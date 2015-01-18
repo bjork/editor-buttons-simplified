@@ -1,2 +1,2 @@
-# editor-buttons-simplified
-WordPress plugin, that makes adjustments to TinyMCE editor buttons to make it more usable and not contain any harmful buttons.
+# Editor Buttons Simplified
+Editor Buttons Simplified is a WordPress plugin, that makes adjustments to TinyMCE editor buttons to make it more usable and not contain any harmful buttons. It is mostly intended as a start of discussion how to improve the WordPress editor's defaults.
