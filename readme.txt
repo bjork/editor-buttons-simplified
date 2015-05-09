@@ -2,10 +2,9 @@
 Contributors: akibjorklund
 Tags: tinymce
 Requires at least: 3.9
-Tested up to: 4.1
-Stable tag: 0.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 4.2
+Stable tag: 0.2
+License: GPLv3
 
 Editor Buttons Simplified is a simple WordPress plugin that makes adjustments to the TinyMCE editor buttons to make it more usable.
 
