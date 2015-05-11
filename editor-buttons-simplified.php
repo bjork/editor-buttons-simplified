@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-require_once 'class-editor-buttons-simplified.php';
+require_once 'class/class-editor-buttons-simplified.php';
 
 add_action( 'admin_init', function () {
-	new Editor_Buttons_Simplified;
+	new Editor_Buttons_Simplified( plugins_url( '', __FILE__ ) );
 } );

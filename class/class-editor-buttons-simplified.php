@@ -21,36 +21,43 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 class Editor_Buttons_Simplified {
 
+	protected $plugin_url;
+
 	/**
 	 * Hook to TinyMCE filters
 	 */
-	function __construct() {
-		add_filter( 'mce_buttons',          array( $this, 'tinymce_buttons_row_1' ) );
-		add_filter( 'mce_buttons_2',        array( $this, 'tinymce_buttons_row_2' ) );
+	function __construct( $plugin_url ) {
+		$this->plugin_url = $plugin_url;
+		add_filter( 'mce_buttons',          array( $this, 'tinymce_buttons' ) );
 		add_filter( 'tiny_mce_before_init', array( $this, 'tinymce_block_format_mod' ) );
+		add_filter( 'mce_external_plugins', array( $this, 'add_tinymce_plugin' ) );
+
+		// Remove row 2 in case the kitchen sink is on from before.
+		add_filter( 'mce_buttons_2', '__return_empty_array' );
 	}
 
 	/**
-	 * Remove useless alignment buttons, add formatselect to row 1
+	 * Remove useless buttons, add formatselect
 	 */
-	function tinymce_buttons_row_1( $buttons ) {
-		$remove = array( 'strikethrough', 'hr', 'alignleft', 'aligncenter', 'alignright' );
-		return array_merge( array( 'formatselect' ), array_diff( $buttons, $remove ) );
+	function tinymce_buttons( $buttons ) {
+		$remove = array( 'alignleft', 'aligncenter', 'alignright', 'wp_adv' );
+		$add = array( 'charmap', 'pastetext', 'removeformat', 'undo', 'redo', 'wp_help', 'ebs_more' );
+		return array_merge( array( 'formatselect' ), array_diff( $buttons, $remove ), $add );
 	}
 
 	/**
-	 * Remove more useless buttons
-	 */
-	function tinymce_buttons_row_2( $buttons ) {
-		$remove = array( 'formatselect', 'underline', 'alignjustify', 'forecolor', 'outdent', 'indent' );
-		return array_merge( array( 'strikethrough', 'hr' ), array_diff( $buttons, $remove ) );
-	}
-
-	/**
-	 * Remove useless heading levels, move pre to bottom.
+	 * Remove useless heading levels.
 	 */
 	function tinymce_block_format_mod( $settings ) {
 		$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
 		return $settings;
+	}
+
+	/**
+	 * Description
+	 */
+	function add_tinymce_plugin() {
+		$plugins_array = array( 'ebs_more_plugin' => $this->plugin_url . '/assets/js/ebs_more_plugin.js' );
+		return $plugins_array;
 	}
 }
