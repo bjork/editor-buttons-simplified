@@ -25,6 +25,8 @@ class Editor_Buttons_Simplified {
 
 	/**
 	 * Hook to TinyMCE filters
+	 *
+	 * @param string $plugin_url The plugin's root URL.
 	 */
 	function __construct( $plugin_url ) {
 		$this->plugin_url = $plugin_url;
@@ -37,7 +39,9 @@ class Editor_Buttons_Simplified {
 	}
 
 	/**
-	 * Remove useless buttons, add formatselect
+	 * Remove useless buttons, add formatselect.
+	 *
+	 * @param array $buttons First-row list of buttons.
 	 */
 	function tinymce_buttons( $buttons ) {
 		$remove = array( 'alignleft', 'aligncenter', 'alignright', 'wp_adv' );
@@ -47,6 +51,8 @@ class Editor_Buttons_Simplified {
 
 	/**
 	 * Remove useless heading levels.
+	 *
+	 * @param array $settings An array with TinyMCE config.
 	 */
 	function tinymce_block_format_mod( $settings ) {
 		$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
@@ -54,7 +60,8 @@ class Editor_Buttons_Simplified {
 	}
 
 	/**
-	 * Description
+	 * Add JavaScript plugin file to TinyMCE, which defines a new
+	 * button that expands the row for showing more buttons.
 	 */
 	function add_tinymce_plugin() {
 		$plugins_array = array( 'ebs_more_plugin' => $this->plugin_url . '/assets/js/ebs_more_plugin.js' );
