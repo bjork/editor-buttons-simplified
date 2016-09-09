@@ -30,12 +30,25 @@ class Editor_Buttons_Simplified {
 	 */
 	function __construct( $plugin_url ) {
 		$this->plugin_url = $plugin_url;
-		add_filter( 'mce_buttons',          array( $this, 'tinymce_buttons' ) );
-		add_filter( 'tiny_mce_before_init', array( $this, 'tinymce_block_format_mod' ) );
-		add_filter( 'mce_external_plugins', array( $this, 'add_tinymce_plugin' ) );
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'tinymce_buttons_localization' ) );
+		add_filter( 'mce_buttons',           array( $this, 'tinymce_buttons' ) );
+		add_filter( 'tiny_mce_before_init',  array( $this, 'tinymce_block_format_mod' ) );
+		add_filter( 'mce_external_plugins',  array( $this, 'add_tinymce_plugin' ) );
 
 		// Remove row 2 in case the kitchen sink is on from before.
 		add_filter( 'mce_buttons_2', '__return_empty_array' );
+	}
+
+	/**
+	 * Localize the TinyMCE plugin.
+	 */
+	function tinymce_buttons_localization() {
+		wp_localize_script( 'editor', 'EBS',
+			array(
+				'more_buttons' => __( 'More buttons', 'editor-buttons-simplified' ),
+			)
+		);
 	}
 
 	/**
