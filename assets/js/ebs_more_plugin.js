@@ -42,7 +42,7 @@
 		// Add More buttons button to the collection of available buttons.
 		editor.addButton( 'ebs_more', {
 			id      : 'ebs_more',
-			tooltip : 'More buttons',
+			tooltip : EBS.more_buttons,
 			image   : assets_url + '/img/dots.png',
 			cmd     : 'ebs_expand',
 			onPostRender: function () {
