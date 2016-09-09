@@ -1,0 +1,21 @@
+{
+  "name": "bjork/editor-buttons-simplified",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0",
+  "description": "Makes adjustments to TinyMCE editor buttons to make it more usable and not contain any harmful buttons.",
+  "homepage": "https://github.com/bjork/editor-buttons-simplified",
+  "authors": [
+    {
+      "name": "Aki Björklund",
+      "homepage": "https://akibjorklund.com/",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "wordpress", "wp","admin","editor","buttons","simple","tinymce"
+  ],
+  "require": {
+    "php": ">=5.5",
+    "composer/installers": "~1.0"
+  }
+}
