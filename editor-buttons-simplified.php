@@ -3,7 +3,7 @@
 Plugin Name: Editor Buttons Simplified
 Plugin URI: http://akibjorklund.com/2015/editor-buttons-simplified
 Description: Makes adjustments to TinyMCE editor buttons to make it more usable and not contain any harmful buttons.
-Version: 0.2.1
+Version: 0.2.2
 Author: Aki Björklund
 Author URI: http://akibjorklund.com
 */
