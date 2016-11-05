@@ -1,5 +1,5 @@
 /* global jQuery, getUserSetting, setUserSetting, tinymce */
-(function( $, getUserSetting, setUserSetting, tinymce ) {
+;(function( $, getUserSetting, setUserSetting, tinymce ) {
 	tinymce.PluginManager.add( 'ebs_more_plugin', function( editor, url ) {
 
 		// Get base url of assets.
@@ -10,8 +10,12 @@
 		// Show or hide extra buttons. Show = true to show, false to hide.
 		function showHide( show ) {
 			$('.mce-wp-dfw').nextAll( ':not(#ebs_more)' ).each( function () {
-				var that = $(this);
-				show ? that.css( 'display', 'inline-block' ) : that.hide();
+				var that = $( this );
+				if ( show ) {
+					that.css( 'display', 'inline-block' );
+				} else {
+					that.hide();
+				}
 			} );
 			expandButton.active( show );
 			setStateSetting( show );

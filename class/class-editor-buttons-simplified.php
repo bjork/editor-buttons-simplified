@@ -52,14 +52,27 @@ class Editor_Buttons_Simplified {
 	}
 
 	/**
-	 * Remove useless buttons, add formatselect.
+	 * Remove useless buttons, add formatselect if WordPress version < 4.7.
 	 *
 	 * @param array $buttons First-row list of buttons.
 	 */
 	function tinymce_buttons( $buttons ) {
 		$remove = array( 'alignleft', 'aligncenter', 'alignright', 'wp_adv' );
 		$add = array( 'charmap', 'pastetext', 'removeformat', 'undo', 'redo', 'wp_help', 'ebs_more' );
-		return array_merge( array( 'formatselect' ), array_diff( $buttons, $remove ), $add );
+
+		$buttons = array_merge( array_diff( $buttons, $remove ), $add );
+
+		// `formatselect` is on the top row beginning from WordPress 4.7.
+		$wp_version = get_bloginfo( 'version' );
+		// Count beta versions as 4.7 by removing the postfix.
+		if ( false !== strpos( $wp_version, '-' ) ) {
+			$wp_version = substr( $wp_version, 0, strpos( $wp_version, '-' ) );
+		}
+		if ( version_compare( $wp_version, '4.7', '<' ) ) {
+			array_unshift( $buttons, 'formatselect' );
+		}
+
+		return $buttons;
 	}
 
 	/**

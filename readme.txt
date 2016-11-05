@@ -23,6 +23,9 @@ A detailed description of design decisions can be found [on my blog](http://akib
 
 == Changelog ==
 
+= 0.2.1 =
+* Add support for WordPress 4.7 which does some changes to the toolbar.
+
 = 0.2 =
 * Get rid of separate rows of buttons, since they do not work well with a responsive layout. Instead, expand the only row with more buttons.
 
